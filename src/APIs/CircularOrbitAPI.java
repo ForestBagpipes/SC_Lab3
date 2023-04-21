@@ -9,7 +9,7 @@ import physicalObject.PhysicalObject;
  *
  *  各部分代码在轨道系统的具体实现中已经包含
  */
-public class CircularOrbirAPI<L,E> {
+public class CircularOrbitAPI<L,E> {
 
     public double getObjectDistributionEntropy(CircularOrbit<L,E> c) {
         return c.getObjectDistributionEntropy();
@@ -27,5 +27,7 @@ public class CircularOrbirAPI<L,E> {
         return c1.getDifference(c2);
     }
 
-
+    public boolean checkOrbitAvailable(CircularOrbit<L,E> c) {
+        return c.checkOribitAvailable();
+    }
 }

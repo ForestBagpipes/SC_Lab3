@@ -30,7 +30,7 @@ public class CircularOrbirAPITest {
         PhysicalObject po1 = new ConcretePObject("1");
         PhysicalObject po2 = new ConcretePObject("2");
         PhysicalObject po3 = new ConcretePObject("3");
-        CircularOrbirAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbirAPI<>();
+        CircularOrbitAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbitAPI<>();
         ConcreteCircularOrbit<CentralObject, PhysicalObject> concreteCircularOrbit = new ConcreteCircularOrbit<>();
         concreteCircularOrbit.addTrack(track1);
         concreteCircularOrbit.addTrack(track2);
@@ -53,7 +53,7 @@ public class CircularOrbirAPITest {
         PhysicalObject po3 = new ConcretePObject("3");
         PhysicalObject po4 = new ConcretePObject("4");
         PhysicalObject po5 = new ConcretePObject("5");
-        CircularOrbirAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbirAPI<>();
+        CircularOrbitAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbitAPI<>();
         ConcreteCircularOrbit<CentralObject, PhysicalObject> concreteCircularOrbit = new ConcreteCircularOrbit<>();
         concreteCircularOrbit.addTrack(track1);
         concreteCircularOrbit.addTrack(track2);
@@ -85,7 +85,7 @@ public class CircularOrbirAPITest {
         PhysicalObject po3 = new ConcretePObject("3");
         PhysicalObject po4 = new ConcretePObject("4");
         PhysicalObject po5 = new ConcretePObject("5");
-        CircularOrbirAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbirAPI<>();
+        CircularOrbitAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbitAPI<>();
         ConcreteCircularOrbit<CentralObject, PhysicalObject> concreteCircularOrbit = new ConcreteCircularOrbit<>();
         concreteCircularOrbit.addTrack(track1);
         concreteCircularOrbit.addTrack(track2);
@@ -114,7 +114,7 @@ public class CircularOrbirAPITest {
         PhysicalObject po1 = new ConcretePObject("1");
         PhysicalObject po2 = new ConcretePObject("2");
         PhysicalObject po3 = new ConcretePObject("3");
-        CircularOrbirAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbirAPI<>();
+        CircularOrbitAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbitAPI<>();
         ConcreteCircularOrbit<CentralObject, PhysicalObject> concreteCircularOrbit1 = new ConcreteCircularOrbit<>();
         concreteCircularOrbit1.addTrack(track1);
         concreteCircularOrbit1.addTrack(track2);

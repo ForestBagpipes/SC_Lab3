@@ -6,6 +6,7 @@ import otherDirectory.Relation;
 import physicalObject.PhysicalObject;
 import track.Track;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
@@ -188,6 +189,15 @@ public class ConcreteCircularOrbit<L, E> implements CircularOrbit<L, E> {
         relationsOf2T.get(physicalObj1).add(new Relation<>(physicalObj1, physicalObj2, weight));
         checkRep();
         return true;
+    }
+
+    @Override
+    public void visualize(JPanel panel) {
+    }
+
+    @Override
+    public JPanel visualizeContentPanel() {
+        return null;
     }
 
     /**

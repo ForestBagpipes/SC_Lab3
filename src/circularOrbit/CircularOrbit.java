@@ -5,6 +5,7 @@ import otherDirectory.Difference;
 import physicalObject.PhysicalObject;
 import track.Track;
 
+import javax.swing.*;
 import java.util.Iterator;
 import java.util.List;
 
@@ -164,4 +165,16 @@ public interface CircularOrbit<L,E> extends Iterable<E>{
      * @return 是否成功添加关系，是的话返回True,否则返回false
      */
     public boolean addRelationOf2P(E physicalObj1,E physicalObj2,double weight);
+
+    /**
+     *  实现面板可视化
+     * @param panel 要可视化的面板
+     */
+    public void visualize(JPanel panel) ;
+
+    /**
+     *  得到要可视化的面板
+     * @return 要可视化的面板
+     */
+    public JPanel visualizeContentPanel();
 }
