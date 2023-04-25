@@ -59,11 +59,8 @@ public class TrackCircularOrbit extends ConcreteCircularOrbit<CentralObject, Run
                 for(int i=0;i<tsize;i++) {
                     trackRadius[i] = (Leng-padding)/(2*tsize)*(i+1);
                 }
-                // 必须先调用父类的paint方法
                 super.paint(graphics);
-                // 使用Graphics，在画板JPanel上画一个小人
                 int centerX = Leng/2,centerY = Leng/2; //圆心的x坐标和Y坐标
-
                 List<Track> trackList = physicalObjectMap.keySet().stream()
                         .sorted().collect(Collectors.toList());
                 for(int id=1;id<=tsize;id++) {
