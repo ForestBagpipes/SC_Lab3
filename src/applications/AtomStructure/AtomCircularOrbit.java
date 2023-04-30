@@ -23,7 +23,7 @@ public class AtomCircularOrbit extends ConcreteCircularOrbit<nucleus,electron> {
     }
 
     /**
-     * 进行记录的回退
+     * 回退历史记录
      * @param memoryList 保存所有操作历史的列表
      */
     public void reback(List<memory> memoryList) {

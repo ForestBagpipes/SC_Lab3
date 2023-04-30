@@ -1,5 +1,8 @@
 package otherDirectory;
 
+import applications.SocialNetworkCircle.Friends;
+import applications.SocialNetworkCircle.centralUser;
+
 /**
  *  物体的关系类
  *  关系为单向边，包含权值
@@ -14,6 +17,17 @@ public class Relation<L,E> {
         this.weight = weight;
     }
 
+    // 创建中心用户和一级好友之间的关系（由于后续应用内方法设计需要，创建了该静态方法）
+    public static Relation<centralUser, Friends> create_Relation1(centralUser obj1, Friends obj2, double weight)
+    {
+        return new Relation<>(obj1,obj2,weight);
+    }
+
+    // 创建好友与好友之间的关系（由于后续应用内方法设计需要，创建了该静态方法）
+    public static Relation<Friends, Friends> create_Relation2(Friends obj1, Friends obj2, double weight)
+    {
+        return new Relation<>(obj1,obj2,weight);
+    }
     /**
      *  获取关系边的起始点物体
      * @return 关系边的起始点物体

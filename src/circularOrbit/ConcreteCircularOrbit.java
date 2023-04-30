@@ -1,6 +1,5 @@
 package circularOrbit;
 
-import otherDirectory.Difference;
 import otherDirectory.Position;
 import otherDirectory.Relation;
 import physicalObject.PhysicalObject;
@@ -335,33 +334,6 @@ public class ConcreteCircularOrbit<L, E> implements CircularOrbit<L, E> {
         double x2 = pos2.getX(),
                 y2 = pos2.getY();
         return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-    }
-
-    @Override
-    public Difference getDifference(CircularOrbit<L, E> that) {
-        List<Track> thisTracks = this.getSortedTrack(); //本系统的轨道列表
-        List<Track> thatTracks = that.getSortedTrack(); //另一个系统的轨道列表
-        Difference res = new Difference(thisTracks.size() - thatTracks.size());
-
-        //保证两个列表的长度相同
-        if (thisTracks.size() < thatTracks.size()) {
-            for (int i = 0; i < thatTracks.size() - thisTracks.size(); i++) {
-                thisTracks.add(null);
-            }
-        }
-        if (thatTracks.size() < thisTracks.size()) {
-            for (int i = 0; i < thatTracks.size() - thisTracks.size(); i++) {
-                thatTracks.add(null);
-            }
-        }
-        //比较生成每个轨道的差异对象，并将其加入到总的系统差异中去
-        for (int i = 0; i < thisTracks.size(); i++) {
-            Track thisTrack = thisTracks.get(i);
-            Track thatTrack = thatTracks.get(i);
-            res.addTrackSet(this.getPhysicalObjectsOnTrack(thisTrack),
-                    that.getPhysicalObjectsOnTrack(thatTrack));
-        }
-        return res;
     }
 
     @Override

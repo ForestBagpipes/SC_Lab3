@@ -1,7 +1,6 @@
 package circularOrbit;
 
 import centralObject.CentralObject;
-import otherDirectory.Difference;
 import physicalObject.PhysicalObject;
 import track.Track;
 
@@ -115,13 +114,6 @@ public interface CircularOrbit<L,E> extends Iterable<E>{
      * @return 两个轨道物体之间的物理距离
      */
     <E extends PhysicalObject> double getPhysicalDistance(E e1, E e2);
-
-    /**
-     * 返回两个系统之间的差异
-     * @param that 要比较的另外一个系统
-     * @return 轨道系统差异类
-     */
-    public Difference getDifference(CircularOrbit<L,E> that) ;
 
     /**
      *  得到排序之后的轨道列表

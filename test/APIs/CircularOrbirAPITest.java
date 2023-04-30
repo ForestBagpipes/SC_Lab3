@@ -103,37 +103,4 @@ public class CircularOrbirAPITest {
         assertEquals(1,cAPI.getPhysicalDistance(concreteCircularOrbit,po1,po2),0.0000001);
         assertEquals(2,cAPI.getPhysicalDistance(concreteCircularOrbit,po1,po3),0.0000001);
     }
-
-    @Test
-    public void testGetDifference() {
-        TrackFactory tf = new CTFactory();
-        Track track1 = tf.create(1.0);
-        Track track2 = tf.create(2.0);
-        Track track3 = tf.create(3.0);
-        PhysicalObjectFactory pof = new ConcretePObjectFactory();
-        PhysicalObject po1 = new ConcretePObject("1");
-        PhysicalObject po2 = new ConcretePObject("2");
-        PhysicalObject po3 = new ConcretePObject("3");
-        CircularOrbitAPI<CentralObject, PhysicalObject> cAPI = new CircularOrbitAPI<>();
-        ConcreteCircularOrbit<CentralObject, PhysicalObject> concreteCircularOrbit1 = new ConcreteCircularOrbit<>();
-        concreteCircularOrbit1.addTrack(track1);
-        concreteCircularOrbit1.addTrack(track2);
-        concreteCircularOrbit1.addTrack(track3);
-        concreteCircularOrbit1.addPhysicalObject(po1,track1);
-        concreteCircularOrbit1.addPhysicalObject(po2,track1);
-        concreteCircularOrbit1.addPhysicalObject(po3,track1);
-
-        ConcreteCircularOrbit<CentralObject, PhysicalObject> concreteCircularOrbit2 = new ConcreteCircularOrbit<>();
-        concreteCircularOrbit2.addTrack(track1);
-        concreteCircularOrbit2.addTrack(track2);
-        concreteCircularOrbit2.addTrack(track3);
-        concreteCircularOrbit2.addPhysicalObject(po1,track1);
-        concreteCircularOrbit2.addPhysicalObject(po2,track2);
-        concreteCircularOrbit2.addPhysicalObject(po3,track3);
-        String expect = "轨道数量差异：0\n"
-                +"轨道1的物体数量差异：2 ；  物体差异：{3,2}-无\n"
-                +"轨道2的物体数量差异：-1 ；  物体差异：无-2\n"
-                +"轨道3的物体数量差异：-1 ；  物体差异：无-3\n";
-        assertEquals(expect,concreteCircularOrbit1.getDifference(concreteCircularOrbit2).toString());
-    }
 }

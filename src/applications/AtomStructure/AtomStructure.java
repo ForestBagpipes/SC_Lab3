@@ -20,17 +20,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ *  原子轨道操作系统主体类，用于完成电子轨道系统上的各种操作及可视化
+ */
 public class AtomStructure implements Draw {
     private String filename;
-
-    //    读入的文件配置
     String elementName;
     int numofTracks;
     List<Integer> trackIdList = new ArrayList<>();
     List<Integer> electronNumList = new ArrayList<>();
     Map<Track,List<electron>> physicalObjMap;
-
-    //    生成的构造配置
     List<Track> trackList = new ArrayList<>();
     AtomCircularOrbit atomCircularOrbit;
 
@@ -50,7 +49,7 @@ public class AtomStructure implements Draw {
         try {
             reader = new BufferedReader(new FileReader( new File(filename)));
             String line = reader.readLine().trim();
-            String[] splitStrs;
+            String[] strs;
             while(line!=null) {
                 if(line.length()==0) {
                     line = reader.readLine();
@@ -66,11 +65,10 @@ public class AtomStructure implements Draw {
                 Matcher tracksMatcher = Pattern.compile(tracksRegExp).matcher(line);
                 //匹配成功
                 if(electronMatcher.find()) {
-                    splitStrs = electronMatcher.group(1).trim().split(";");
-                    System.out.println(666);
-                    for(int i=0;i<splitStrs.length;i++) {
-                        int trackId = Integer.valueOf(splitStrs[i].split("/")[0]);
-                        int electronNum = Integer.valueOf(splitStrs[i].split("/")[1]);
+                    strs = electronMatcher.group(1).trim().split(";");
+                    for(int i=0;i<strs.length;i++) {
+                        int trackId = Integer.valueOf(strs[i].split("/")[0]);
+                        int electronNum = Integer.valueOf(strs[i].split("/")[1]);
                         trackIdList.add(trackId);
                         electronNumList.add(electronNum);
                     }
@@ -108,7 +106,6 @@ public class AtomStructure implements Draw {
         }
         builder.buildTracks(trackList);
         physicalObjMap = new HashMap<>();
-
         for(int i=0;i<trackIdList.size();i++) {
             Track track = trackList.get(trackIdList.get(i)-1);
             int Enum = electronNumList.get(i);
@@ -223,7 +220,6 @@ public class AtomStructure implements Draw {
         CTFactory ctf = new CTFactory();
         Track sourceTrack = ctf.create(source);
         Track targetTrack = ctf.create(target);
-
         electron electron = getPhysicalObj(x->atomCircularOrbit.getTrackForPO(x).equals(sourceTrack)
                 ,atomCircularOrbit);
         atomCircularOrbit.removePhysicalObject(electron);
