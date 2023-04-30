@@ -26,6 +26,10 @@ public class Runner extends ConcretePObject {
         assert this.bestScore != 0;
     }
 
+    public static Runner getInstance(String obName,int id,int age,double bestScore,String country) {
+        return new Runner(obName, country,id,age,bestScore);
+    }
+
     // TODO constructor
     public Runner(String name,String country,int id,int age ,double bestScore) {
         super(name);
