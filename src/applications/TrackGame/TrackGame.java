@@ -2,11 +2,9 @@ package applications.TrackGame;
 
 import APIs.CircularOrbitAPI;
 import APIs.Draw;
-import applications.TrackGame.Strategies.Strategy;
+import applications.TrackGame.Strategies.*;
 import applications.TrackGame.GUI.TrackGamePanel;
 import applications.TrackGame.Strategies.Strategy;
-import applications.TrackGame.Strategies.RandomStrategy;
-import applications.TrackGame.Strategies.SortStrategy;
 import centralObject.CentralObject;
 import circularOrbit.CircularOrbit;
 import circularOrbit.ConcreteCircularOrbit;
@@ -107,24 +105,37 @@ public class TrackGame implements Draw {
      */
     public void divideIntoGroups(Strategy Strategies) {
         assert runnerList.isEmpty()!=true : "还没有进行配置读入";
+        int tmp = 0;
         List<Track> trackList = new ArrayList<>();
         for(int i=0;i<numofTracks;i++) {
             trackList.add(new ConcreteTrack(TRACKRADIUS[i]));
         }
-        List<Map<Track,Runner>> runnerGroups = Strategies.assign(trackList,runnerList);
         List<TrackCircularOrbit> trackCircularOrbits = new ArrayList<>();
-        for(Map<Track,Runner> group:runnerGroups) {
-            TrackCircularOrbitBuilder trackBuilder = new TrackCircularOrbitBuilder();
-            trackBuilder.createConcreteCircularOrbit(null);
-            trackBuilder.buildTracks(trackList);
-            Map<Track,List<Runner>> physicalObjsMap = new HashMap<>();
-            int uplimit= Math.min(numofTracks,group.size());
-            //运用流操作进行重新分组
-            Map<Track,List<Runner>> newGroup = group.keySet().stream()
-                    .collect(Collectors.toMap(x->x,x->
-                            Arrays.asList(group.get(x))));
-            trackBuilder.buildObjects(null,newGroup);
-            trackCircularOrbits.add((TrackCircularOrbit) trackBuilder.getConcreteCircularOrbit());
+        if(Strategies.getStrategyName().equals("RelayStrategy")){
+            List<Map<Track, List<Runner>>> runnerGroups = Strategies.Assign(trackList, runnerList);
+            for (Map<Track, List<Runner>> group : runnerGroups) {
+                TrackCircularOrbitBuilder trackBuilder = new TrackCircularOrbitBuilder();
+                trackBuilder.createConcreteCircularOrbit(null);
+                trackBuilder.buildTracks(trackList);
+                //运用流操作进行重新分组
+                Map<Track, List<Runner>> newGroup = group;
+                System.out.println(newGroup);
+                trackBuilder.buildObjects(null, newGroup);
+                trackCircularOrbits.add((TrackCircularOrbit) trackBuilder.getConcreteCircularOrbit());
+            }
+        }else {
+            List<Map<Track, Runner>> runnerGroups = Strategies.assign(trackList, runnerList);
+            for (Map<Track, Runner> group : runnerGroups) {
+                TrackCircularOrbitBuilder trackBuilder = new TrackCircularOrbitBuilder();
+                trackBuilder.createConcreteCircularOrbit(null);
+                trackBuilder.buildTracks(trackList);
+                //运用流操作进行重新分组
+                Map<Track, List<Runner>> newGroup = group.keySet().stream()
+                        .collect(Collectors.toMap(x -> x, x ->
+                                Arrays.asList(group.get(x))));
+                trackBuilder.buildObjects(null, newGroup);
+                trackCircularOrbits.add((TrackCircularOrbit) trackBuilder.getConcreteCircularOrbit());
+            }
         }
         this.trackCircularOrbitList = trackCircularOrbits;
     }
@@ -193,6 +204,7 @@ public class TrackGame implements Draw {
     public void initialize() {
         strategies.add(new RandomStrategy());
         strategies.add(new SortStrategy());
+        strategies.add(new RelayStrategy());
         loadConfig();
     }
 

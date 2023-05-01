@@ -38,4 +38,9 @@ public class RandomStrategy extends Strategy{
         }
         return ans;
     }
+
+    @Override
+    public List<Map<Track, List<Runner>>> Assign(List<Track> tracks, List<Runner> runnerList) {
+        return null;
+    }
 }

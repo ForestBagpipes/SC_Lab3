@@ -19,6 +19,7 @@ public abstract class Strategy {
      * @return 各组的跑道与对应运动员构成的列表
      */
     abstract public List<Map<Track, Runner>> assign(List<Track> tracks, List<Runner> runnerList) ;
+    abstract public List<Map<Track, List<Runner>>> Assign(List<Track> tracks, List<Runner> runnerList) ;
 
     public String getStrategyName() {
         return StrategyName;

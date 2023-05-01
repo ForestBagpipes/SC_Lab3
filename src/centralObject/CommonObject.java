@@ -18,6 +18,13 @@ public abstract class CommonObject {
     }
 
     /**
+     *  更改物体的名字
+     * @param name 要改的名字
+     */
+    protected  void setName(String name){
+        this.name = name;
+    }
+    /**
      * 得到物体的名字
      * @return 物体的名称name
      */

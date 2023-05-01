@@ -94,12 +94,12 @@ public class SocialNetworkCircularOrbit extends ConcreteCircularOrbit<centralUse
         for(Track track:copy.keySet()) {
             Iterator<Friends> iterator = copy.get(track).iterator();
             while(iterator.hasNext()) {
-                Friends Friends = iterator.next();
+                Friends friends = iterator.next();
                 //如果该朋友已经不存在
-                if(!map.containsKey(Friends)) {
-                    physicalObjectMap.get(track).remove(Friends);
+                if(!map.containsKey(friends)) {
+                    physicalObjectMap.get(track).remove(friends);
                 } else {
-                    int Dis = map.get(Friends);
+                    int Dis = map.get(friends);
                     int i = physicalObjectMap.size()+1;
                     while(i<Dis) {
                         Track newTrack = ctf.create(i++);
@@ -107,11 +107,12 @@ public class SocialNetworkCircularOrbit extends ConcreteCircularOrbit<centralUse
                         addTrack(newTrack);
                     }
                     if(track.getRadius()!=(double)Dis) {
-                        physicalObjectMap.get(track).remove(Friends);
-                        physicalObjectMap.get(ctf.create(Dis)).add(Friends);
+                        physicalObjectMap.get(track).remove(friends);
+                        physicalObjectMap.get(ctf.create(Dis)).add(friends);
                     }
                 }
             }
+            getPhysicalMap(physicalObjectMap.get(track));
         }
     }
 
@@ -161,6 +162,9 @@ public class SocialNetworkCircularOrbit extends ConcreteCircularOrbit<centralUse
      * @return 添加成功返回true，否则返回false
      */
     public boolean addRelationOf2T(Friends frd1, Friends frd2, double weight) {
+        if(getTrackForPO(frd1).compareTo(getTrackForPO(frd2))>=0){
+            return true;
+        }
         boolean ans = super.addRelationOf2P(frd1, frd2, weight);
         adjustFriendsLocation();
         return ans;
@@ -257,6 +261,9 @@ public class SocialNetworkCircularOrbit extends ConcreteCircularOrbit<centralUse
                 //完成朋友与朋友之间的关系连线
                 for(Map.Entry<Friends,List<Relation<Friends,Friends>>> entry:relationsOf2T.entrySet()) {
                     for(Relation<Friends,Friends> rel:entry.getValue()) {
+                        if(getTrackForPO(rel.getobj1()).compareTo(getTrackForPO(rel.getobj2()))>=0){
+                            continue;
+                        }
                         Position pos1 = rel.getobj1().getPos();
                         Position pos2 = rel.getobj2().getPos();
                         int x1 = (int)pos1.getX();

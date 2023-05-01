@@ -29,13 +29,6 @@ public class TrackCircularOrbit extends ConcreteCircularOrbit<CentralObject, Run
         //检查跑道数是否在4-10之间
         int numOfTrack = physicalObjectMap.keySet().size();
         flag = flag && numOfTrack >= 4 && numOfTrack <= 10;
-        //检查每组人数不超过跑道数
-        int numOfRunner = physicalObjectMap.values().stream()
-                .mapToInt(List::size).sum();
-        flag = flag && numOfRunner <= numOfTrack;
-        for (Track track : physicalObjectMap.keySet()) {
-            flag = flag && physicalObjectMap.get(track).size() <= 1;
-        }
         return flag;
     }
 

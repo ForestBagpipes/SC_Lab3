@@ -65,7 +65,7 @@ public class ProjectFrame extends JFrame {
         JFrame trackGameFrame = new JFrame();
         trackGameFrame.setTitle("TrackGame");
         trackGameFrame.setSize(WIDTH,HEIGHT);
-        TrackGame trackgame = new TrackGame(trackGame[2]);
+        TrackGame trackgame = new TrackGame(trackGame[0]);
         trackgame.initialize();
         trackgame.draw(trackGameFrame);
         trackGameFrame.setVisible(true);

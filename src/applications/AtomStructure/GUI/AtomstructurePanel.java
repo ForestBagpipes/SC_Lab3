@@ -411,7 +411,7 @@ public class AtomstructurePanel extends JPanel {
                 operapanel.add(label6, "cell 1 6");
 
                 //添加轨道物体电子按钮
-                buttonAddPO.setText("\u8f93\u5165");
+                buttonAddPO.setText("输入");
                 buttonAddPO.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {

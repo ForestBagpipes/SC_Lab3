@@ -28,8 +28,8 @@ public class SortStrategy extends Strategy {
         List<Map<Track,Runner>> ans = new ArrayList<>();
         int index = -1;
         int tsize = tracks.size();
-        for (int i = 0; i < runnerList.size(); i++) {
-            Runner runner = runnerList.get(i);
+        for (int i = 0; i < runners.size(); i++) {
+            Runner runner = runners.get(i);
             Track track = tracks.get(i%tsize);
             if(i%tsize==0){
                 index++;
@@ -38,5 +38,10 @@ public class SortStrategy extends Strategy {
             ans.get(index).put(track,runner);
         }
         return ans;
+    }
+
+    @Override
+    public List<Map<Track, List<Runner>>> Assign(List<Track> tracks, List<Runner> runnerList) {
+        return null;
     }
 }

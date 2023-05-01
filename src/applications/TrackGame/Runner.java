@@ -88,4 +88,9 @@ public class Runner extends ConcretePObject {
                 && this.country.equals(that.country)
                 && this.bestScore == that.bestScore;
     }
+
+    @Override
+    public int compareTo(PhysicalObject that) {
+        return this.getName().compareTo(that.getName());
+    }
 }

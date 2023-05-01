@@ -115,10 +115,7 @@ public class SocialNetworkCircle implements Draw {
                     relOfCT.add(Relation.create_Relation1(centralUser,Friends,socialDegree));
                     continue;
                 }
-
                 if(getNameIndex(Arrays.asList(centralUser),userNameB)!=-1) {
-                    Friends Friends = FriendsList.get(getNameIndex(FriendsList,userNameA));
-                    relOfCT.add(Relation.create_Relation1(centralUser,Friends,socialDegree));
                     continue;
                 }
 
@@ -127,11 +124,7 @@ public class SocialNetworkCircle implements Draw {
                 if(!relOf2T.containsKey(FriendsA)) {
                     relOf2T.put(FriendsA,new ArrayList<>());
                 }
-                if(!relOf2T.containsKey(FriendsB)) {
-                    relOf2T.put(FriendsB,new ArrayList<>());
-                }
                 relOf2T.get(FriendsA).add(Relation.create_Relation2(FriendsA,FriendsB,socialDegree));
-                relOf2T.get(FriendsB).add(Relation.create_Relation2(FriendsB,FriendsA,socialDegree));
             }
 
         } catch(IOException e) {
@@ -231,12 +224,9 @@ public class SocialNetworkCircle implements Draw {
         SNCOrbitBuilder builder = new SNCOrbitBuilder();
         builder.createConcreteCircularOrbit(null);
         getPhysicalMap();
-        List<Track> sortedTracks = physicalObjMap.keySet().stream()
-                .sorted().collect(Collectors.toList());
         builder.buildTracks(trackList);
         builder.buildObjects(centralUser,physicalObjMap);
         builder.buildRelation(relOfCT,relOf2T);
-
         circularOrbit = (SocialNetworkCircularOrbit) builder.getConcreteCircularOrbit();
     }
 
@@ -386,9 +376,11 @@ public class SocialNetworkCircle implements Draw {
             reLoadAll();
             return ;
         }
-
         FriendsU = getPhysicalObjByname(x->x.getName().equals(nameU),circularOrbit);
         FriendsV = getPhysicalObjByname(x->x.getName().equals(nameV),circularOrbit);
+//        if(circularOrbit.getTrackForPO(FriendsU).compareTo(circularOrbit.getTrackForPO(FriendsV))>=0){
+//            return ;
+//        }
         circularOrbit.addRelationOf2T(FriendsU,FriendsV,Degree);
         circularOrbit.addRelationOf2T(FriendsV,FriendsU,Degree);
 
